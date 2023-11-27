@@ -26,11 +26,13 @@ private static String dbName = "testpersonne";
         return connect;
     }
 
-    public static synchronized void setNomDB(String nomDB)
-    {if (nomDB!=null && nomDB!=dbName){
-     dbName=nomDB;
-     connect =null;
-    }
+    public static synchronized void setNomDB(String nomDB) {
+        if (nomDB != null && nomDB != dbName) {
+            dbName = nomDB;
+            connect = null;
+        }
 
     }
+
+    public static String getDbName(){return dbName;}
 }
