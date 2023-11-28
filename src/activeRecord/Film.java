@@ -13,6 +13,10 @@ int id_real;
 
 public Film(String t, Personne p) throws Exception
 {
+    if (p.getId()==-1)
+    {
+        throw new RealisateurAbsentException();
+    }
     titre=t;
     id_real=p.getId();
     idFilm = -1;
@@ -43,7 +47,7 @@ public Film(String t, Personne p) throws Exception
         Film p=null;
         while (Res.next())
         {
-            p= new Film (Res.getString(1), Personne.findById(Res.getInt(2)));
+            p = new Film (Res.getString(1), Personne.findById(Res.getInt(2)));
             p.setIdFilm(i);
         }
         return p;

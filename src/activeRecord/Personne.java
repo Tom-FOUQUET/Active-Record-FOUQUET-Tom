@@ -66,11 +66,11 @@ public class Personne {
         System.out.println("2) supresion table Personne\n");
     }
 
-    public static ArrayList<Personne> findByName(String fincher) throws Exception{
+    public static ArrayList<Personne> findByName(String nom) throws Exception{
         Connection co = DBConnection.getConexion();
         String query = "Select * from Personne where nom = ?";
         PreparedStatement prepared = co.prepareStatement(query);
-        prepared.setString(1,fincher);
+        prepared.setString(1,nom);
         prepared.executeQuery();
         ResultSet Res = prepared.getResultSet();
         Personne p=null;
@@ -93,8 +93,18 @@ public class Personne {
         prep.setString(1 ,this.nom);
         prep.setString(2,this.prenom);
         prep.executeUpdate();
+        idPersonne = Personne.findByName(this.nom).get(0).getId();
+
         }
-        Personne.findByName(this.nom);
+        else
+        {
+            String SQLPrep = "update  Personne set nom = ?  , prenom = ? where id = ?";
+            PreparedStatement prep = DBConnection.getConexion().prepareStatement(SQLPrep);
+            prep.setString(1 ,this.nom);
+            prep.setString(2,this.prenom);
+            prep.setInt(3,this.idPersonne);
+            prep.executeUpdate();
+        }
     }
 
     public void delete() throws Exception
