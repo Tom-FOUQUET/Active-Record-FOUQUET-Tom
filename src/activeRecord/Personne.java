@@ -20,7 +20,7 @@ public class Personne {
 
     public static ArrayList<Personne> findAll() throws Exception {
         Connection co = DBConnection.getConexion();
-        String query = "Select nom,prenom from activeRecord.Personne";
+        String query = "Select nom,prenom from Personne";
         PreparedStatement prepared = co.prepareStatement(query);
         prepared.executeQuery();
         ResultSet Res = prepared.getResultSet();
@@ -36,7 +36,7 @@ public class Personne {
 
     public static Personne findById(int i) throws Exception {
         Connection co = DBConnection.getConexion();
-        String query = "Select nom,prenom from activeRecord.Personne where id = ?";
+        String query = "Select nom,prenom from Personne where id = ?";
         PreparedStatement prepared = co.prepareStatement(query);
         prepared.setInt(1,i);
         prepared.executeQuery();
@@ -52,23 +52,23 @@ public class Personne {
 
     public static void createTable() throws Exception{
         Connection connect =DBConnection.getConexion();
-        String createString = "CREATE TABLE activeRecord.Personne ( " + "ID INTEGER  AUTO_INCREMENT, "
+        String createString = "CREATE TABLE Personne ( " + "ID INTEGER  AUTO_INCREMENT, "
                 + "NOM varchar(40) NOT NULL, " + "PRENOM varchar(40) NOT NULL, " + "PRIMARY KEY (ID))";
         Statement stmt = connect.createStatement();
         stmt.executeUpdate(createString);
-        System.out.println("1) creation table activeRecord.Personne\n");}
+        System.out.println("1) creation table Personne\n");}
 
     public static void deleteTable() throws Exception {
         Connection connect =DBConnection.getConexion();
-        String deleteString = "DROP TABLE activeRecord.Personne";
+        String deleteString = "DROP TABLE Personne";
         Statement stmt = connect.createStatement();
         stmt.executeUpdate(deleteString);
-        System.out.println("2) supresion table activeRecord.Personne\n");
+        System.out.println("2) supresion table Personne\n");
     }
 
     public static ArrayList<Personne> findByName(String fincher) throws Exception{
         Connection co = DBConnection.getConexion();
-        String query = "Select * from activeRecord.Personne where nom = ?";
+        String query = "Select * from Personne where nom = ?";
         PreparedStatement prepared = co.prepareStatement(query);
         prepared.setString(1,fincher);
         prepared.executeQuery();
@@ -88,7 +88,7 @@ public class Personne {
     {
         if (idPersonne==-1)
         {
-        String SQLPrep = "INSERT INTO activeRecord.Personne (nom, prenom) VALUES (?,?)";
+        String SQLPrep = "INSERT INTO Personne (nom, prenom) VALUES (?,?)";
         PreparedStatement prep = DBConnection.getConexion().prepareStatement(SQLPrep);
         prep.setString(1 ,this.nom);
         prep.setString(2,this.prenom);

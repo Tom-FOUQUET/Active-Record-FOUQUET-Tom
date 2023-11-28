@@ -19,17 +19,17 @@ public Film(String t, Personne p) throws Exception
 }
     public static void createTable() throws Exception{
         Connection connect = DBConnection.getConexion();
-        String createString = "CREATE TABLE activeRecord.Film (id INTEGER  AUTO_INCREMENT NOT NULL,titre varchar(40) NOT NULL,id_real int(11),PRIMARY KEY (ID))";
+        String createString = "CREATE TABLE Film (id INTEGER  AUTO_INCREMENT NOT NULL,titre varchar(40) NOT NULL,id_real int(11),PRIMARY KEY (ID))";
         Statement stmt = connect.createStatement();
         stmt.executeUpdate(createString);
-        System.out.println("1) creation table activeRecord.Film\n");}
+        System.out.println("1) creation table Film\n");}
 
     public static void deleteTable() throws Exception {
         Connection connect =DBConnection.getConexion();
-        String deleteString = "DROP TABLE activeRecord.Film";
+        String deleteString = "DROP TABLE Film";
         Statement stmt = connect.createStatement();
         stmt.executeUpdate(deleteString);
-        System.out.println("2) supresion table activeRecord.Film\n");
+        System.out.println("2) supresion table Film\n");
     }
 
 
@@ -54,7 +54,7 @@ public Film(String t, Personne p) throws Exception
     {
         if (idFilm==-1)
         {
-            String SQLPrep = "INSERT INTO activeRecord.Film (titre, id_real) VALUES (?,?)";
+            String SQLPrep = "INSERT INTO Film (titre, id_real) VALUES (?,?)";
             PreparedStatement prep = DBConnection.getConexion().prepareStatement(SQLPrep);
             prep.setString(1 ,this.titre);
             prep.setInt(2,this.id_real);
@@ -66,7 +66,7 @@ public Film(String t, Personne p) throws Exception
     public void delete() throws Exception
     {
         Connection connect =DBConnection.getConexion();
-        String deleteString = "DELETE from activeRecord.Film where id = ?";
+        String deleteString = "DELETE from Film where id = ?";
         PreparedStatement stmt = connect.prepareStatement(deleteString);
         stmt.setInt(1,this.idFilm);
         stmt.executeUpdate();
