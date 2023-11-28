@@ -1,3 +1,6 @@
+package activeRecord;
+
+import activeRecord.DBConnection;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 

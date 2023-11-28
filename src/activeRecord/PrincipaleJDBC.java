@@ -1,12 +1,11 @@
+package activeRecord;
 
+import activeRecord.DBConnection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 public class PrincipaleJDBC {
 
@@ -15,18 +14,18 @@ public class PrincipaleJDBC {
     public static void main(String[] args) throws SQLException {
         Connection connect = DBConnection.getConexion();
 
-        // creation de la table Personne
+        // creation de la table activeRecord.Personne
         {
-            String createString = "CREATE TABLE Personne ( " + "ID INTEGER  AUTO_INCREMENT, "
+            String createString = "CREATE TABLE activeRecord.Personne ( " + "ID INTEGER  AUTO_INCREMENT, "
                     + "NOM varchar(40) NOT NULL, " + "PRENOM varchar(40) NOT NULL, " + "PRIMARY KEY (ID))";
             Statement stmt = connect.createStatement();
             stmt.executeUpdate(createString);
-            System.out.println("1) creation table Personne\n");
+            System.out.println("1) creation table activeRecord.Personne\n");
         }
 
         // ajout de personne avec requete preparee
         {
-            String SQLPrep = "INSERT INTO Personne (nom, prenom) VALUES (?,?);";
+            String SQLPrep = "INSERT INTO activeRecord.Personne (nom, prenom) VALUES (?,?);";
             PreparedStatement prep;
         }
     }

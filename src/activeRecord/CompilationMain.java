@@ -1,3 +1,5 @@
+package activeRecord;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public class CompilationMain {
             ///////////////// test personne
 
 
-            //creation de la table Personne
+            //creation de la table activeRecord.Personne
             Personne.createTable();
 
 
